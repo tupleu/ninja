@@ -21,6 +21,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <cstring>
+#include <iostream>
 #include <string>
 
 #ifdef _WIN32
@@ -54,6 +55,8 @@
 #include "status.h"
 #include "util.h"
 #include "version.h"
+
+#include "../cnobi/cnobi.h"
 
 using namespace std;
 
@@ -1759,6 +1762,8 @@ NORETURN void real_main(int argc, char** argv) {
   for (int cycle = 1; cycle <= kCycleLimit; ++cycle) {
     NinjaMain ninja(ninja_command, config);
 
+    load_state(&ninja.state_);
+    std::cout << "here" << std::endl;
     ManifestParserOptions parser_opts;
     if (options.phony_cycle_should_err) {
       parser_opts.phony_cycle_action_ = kPhonyCycleActionError;
